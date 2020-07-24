@@ -38,7 +38,8 @@ Future<void> writeFiles(
       webComponent: webComponent,
     );
     sb.writeln(
-        "export { $className } from './$collectionName/$filename/$filename.js';");
+        "import { $className } from './$collectionName/$filename/$filename.js';");
+    // sb.writeln("var $className = require('./$collectionName/$filename/$filename.js');");
   }
   if (webComponent) {
     final exportFile = generateFile(p.join(path, 'web', '$collectionName.js'));

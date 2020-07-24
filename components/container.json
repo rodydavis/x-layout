@@ -14,6 +14,11 @@
         {
             "name": "height",
             "default": "auto"
+        },
+        {
+            "name": "color",
+            "default": "#ffffff",
+            "css_attr": "background-color"
         }
     ]
 }

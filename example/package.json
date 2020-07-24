@@ -1,0 +1,23 @@
+{
+    "name": "name",
+    "description": "description",
+    "authors": "author",
+    "version": "1.0.0",
+    "main": ".",
+    "scripts": {
+        "build": "tsc && rollup -c",
+        "serve": "tsc && rollup -c -w & es-dev-server --app-index index.html --node-resolve --watch --open"
+    },
+    "dependencies": {
+        "@webcomponents/webcomponentsjs": "2.4.3",
+        "lit-element": "^2.3.1"
+    },
+    "devDependencies": {
+        "@rollup/plugin-commonjs": "^14.0.0",
+        "@rollup/plugin-node-resolve": "^8.1.0",
+        "@rollup/plugin-typescript": "^5.0.2",
+        "es-dev-server": "^1.57.0",
+        "rollup": "^2.21.0",
+        "typescript": "^3.9.7"
+    }
+}

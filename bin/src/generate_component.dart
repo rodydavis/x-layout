@@ -29,9 +29,9 @@ Future<void> generateComponent(
     }
     if (hasCss) {
       sb.write(', css');
-      if (properties.isNotEmpty) {
-        sb.write(', unsafeCSS');
-      }
+      // if (properties.isNotEmpty) {
+      //   sb.write(', unsafeCSS');
+      // }
     }
     sb.write("""
  } from 'lit-element';
@@ -64,27 +64,27 @@ static get styles() {
         return css`
       #$id {
 """);
-      if (hasProperties) {
-        for (final prop in properties) {
-          final type = (prop['type'] ?? 'string').toString().toLowerCase();
-          dynamic defaultValue = '';
-          if (type == 'string') {
-            defaultValue = prop['default'] ?? '';
-            defaultValue = "'$defaultValue'";
-          } else if (type == 'number') {
-            defaultValue = prop['default'] ?? 0;
-          }
-          final propName = (prop['name'] ?? '').toString();
-          sb.writeln('         $propName: \${unsafeCSS(${defaultValue})};');
-        }
-      }
+      // if (hasProperties) {
+      //   for (final prop in properties) {
+      //     final type = (prop['type'] ?? 'string').toString().toLowerCase();
+      //     final propName = (prop['name'] ?? '').toString();
+      //     dynamic defaultValue = '';
+      //     if (type == 'string') {
+      //       defaultValue = prop['default'] ?? '';
+      //       defaultValue = '$defaultValue';
+      //     } else if (type == 'number') {
+      //       defaultValue = prop['default'] ?? 0;
+      //     }
+      //     sb.writeln('         $propName: \${unsafeCSS(${propName})};');
+      //   }
+      // }
       if (data['custom_css'] != null) {
         final props = List.from(data['custom_css']);
         for (final item in props) {
           String description = item.toString();
           if (description.contains('{{') && description.contains('}}')) {
-              description = description.replaceAll('{{', '\${unsafeCSS(');
-              description = description.replaceAll('}}', ')}');
+            description = description.replaceAll('{{', '\${unsafeCSS(');
+            description = description.replaceAll('}}', ')}');
           }
           sb.write('         $description');
           if (!description.contains(';')) sb.write(';');
@@ -103,7 +103,17 @@ static get styles() {
     sb.write("""
  render() {
         return html`
-        <div id="$id">
+        <div id="$id" style="
+""");
+    if (hasProperties) {
+      for (final prop in properties) {
+        final propName = (prop['name'] ?? '').toString();
+        final cssName = (prop['css_attr'] ?? propName).toString();
+        sb.writeln('$cssName: \${this.$propName};');
+      }
+    }
+    sb.write("""
+">
             <slot></slot>
         </div>
         `;
@@ -114,11 +124,11 @@ static get styles() {
     sb.writeln('}');
     await base.writeAsString(sb.toString());
     if (webComponent) {
-      await run(
-        'tsc',
-        [webPath, '--outDir', p.join(path, filename)],
-        verbose: true,
-      );
+      // await run(
+      //   'tsc',
+      //   [webPath, '--outDir', p.join(path, filename)],
+      //   verbose: true,
+      // );
     }
   }
 }
