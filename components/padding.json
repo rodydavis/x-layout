@@ -1,0 +1,6 @@
+{
+    "properties": [{
+        "name": "padding",
+        "default": "0px"
+    }]
+}

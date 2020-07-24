@@ -1,0 +1,11 @@
+{
+    "properties": [{
+            "name": "width",
+            "default": "auto"
+        },
+        {
+            "name": "height",
+            "default": "auto"
+        }
+    ]
+}

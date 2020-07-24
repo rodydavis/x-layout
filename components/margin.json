@@ -1,0 +1,6 @@
+{
+    "properties": [{
+        "name": "margin",
+        "default": "0px"
+    }]
+}

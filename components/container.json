@@ -1,0 +1,19 @@
+{
+    "properties": [{
+            "name": "padding",
+            "default": "0px"
+        },
+        {
+            "name": "margin",
+            "default": "0px"
+        },
+        {
+            "name": "width",
+            "default": "auto"
+        },
+        {
+            "name": "height",
+            "default": "auto"
+        }
+    ]
+}

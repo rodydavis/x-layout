@@ -1,0 +1,10 @@
+{
+    "name": "backbone-gen",
+    "description": "description",
+    "authors": "author",
+    "version": "1.0.0",
+    "main": "build/index.js",
+    "dependencies": {
+        "lit-element": "^2.3.1"
+    }
+}
